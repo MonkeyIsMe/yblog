@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"yblog/constant"
 
 	"gorm.io/gorm"
 )
@@ -49,7 +50,7 @@ type Tag struct {
 	TagInfo string `gorm:"column:tag_info"` // 标签简介
 }
 
-// TagBlog 分类和博文的关联表
+// TagBlog 标签和博文的关联表
 type TagBlog struct {
 	UnionID int `gorm:"column:union_id"` // 主键，关联编号
 	BlogID  int `gorm:"column:blog_id"`  // 博客编号，博客的主键
@@ -59,10 +60,33 @@ type TagBlog struct {
 // Blog 博客类
 type Blog struct {
 	BlogID       int    `gorm:"column:blog_id"`       // 博客编号，主键
-	BlogName     string `gorm:"column:blog_name"`     // 博客名称
+	BlogTitle    string `gorm:"column:blog_title"`    // 博客名称
 	BlogContent  string `gorm:"column:blog_content"`  // 博客内容
 	CreateTime   string `gorm:"column:create_time"`   // 创建时间
 	BlogAbstract string `gorm:"column:blog_abstract"` // 博客摘要
 	BlogAuthor   string `gorm:"column:blog_author"`   // 博客作者
 	IsValid      string `gorm:"column:is_valid"`      // 是否可见
+}
+
+// Classify 分类信息
+type Classify struct {
+	ClassifyID   int    `gorm:"column:classify_id"`   // 分类编号，主键
+	ClassifyName int    `gorm:"column:classify_name"` // 分类名称
+	ClassifyInfo string `gorm:"column:calssify_info"` // 分类信息
+}
+
+// ClassifyBlog 分类和博文的关联表
+type ClassifyBlog struct {
+	UnionID    int `gorm:"column:union_id"`    // 主键，关联编号
+	BlogID     int `gorm:"column:blog_id"`     // 博客编号，博客的主键
+	ClassifyID int `gorm:"column:classify_id"` // 分类编号，分类的主键
+}
+
+// Log 操作日志的基础类
+type Log struct {
+	LogID        int                  `gorm:"column:log_id"`        // 主键，日志编号
+	LogOperation int                  `gorm:"column:log_operation"` // 日志操作
+	LogDetail    constant.LogOpDetail `gorm:"column:log_detail"`    // 日志描述
+	LogOperator  string               `gorm:"column:log_operator"`  // 操作人
+	LogTime      string               `gorm:"column:log_time"`      // 操作时间
 }

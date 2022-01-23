@@ -8,10 +8,23 @@ const (
 )
 
 const (
-	TableComment = "t_comment"
-	TableBlog    = "t_blog"
-	TableLog     = "t_log"
-	TableUser    = "t_user"
-	TableTag     = "t_tag"
-	TableTagBlog = "t_tag_blog"
+	TableComment      = "t_comment"
+	TableBlog         = "t_blog"
+	TableLog          = "t_log"
+	TableUser         = "t_user"
+	TableTag          = "t_tag"
+	TableTagBlog      = "t_tag_blog"
+	TabelClassify     = "t_classify"
+	TabelClassifyBlog = "t_classify_blog"
+)
+
+const (
+	CommentDetail      = 1
+	BlogDetail         = 2
+	LogDetail          = 3
+	UserDetail         = 4
+	TagDetail          = 5
+	TagBlogDetail      = 6
+	ClassifyDetail     = 7
+	ClassifyBlogDetail = 8
 )

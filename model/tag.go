@@ -46,6 +46,22 @@ func QueryTagPageSize(page int) ([]Tag, error) {
 	return tagList, nil
 }
 
-func (tb TagBlog) name() {
+// AddTagBlog 插入一个博客和标签的关联
+func (tb TagBlog) AddTagBlog() error {
+	err := DBClient.Create(&tb).Error
+	if err != nil {
+		log.Fatalf("Add TagBlog Erorr: [%+v]", err)
+		return err
+	}
+	return nil
+}
 
+// DeleteTagBlog 删除一个博客和标签的关联
+func (tb TagBlog) DeleteTagBlog() error {
+	err := DBClient.Delete(&tb).Error
+	if err != nil {
+		log.Fatalf("Delete TagBlog Erorr: [%+v]", err)
+		return err
+	}
+	return nil
 }
