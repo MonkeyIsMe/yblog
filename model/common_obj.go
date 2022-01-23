@@ -36,8 +36,7 @@ type User struct {
 	UserPassword string `gorm:"column:user_password"` // 密码
 	CreateTime   string `gorm:"column:create_time"`   // 创建时间
 	UserAccount  string `gorm:"column:user_account"`  // 账号
-	IsValid      int    `gorm:"column:is_valid"`      // 账号是否可用
-	UserFlag     int    `gorm:"column:user_flag"`     // 用户的权限
+	UserFlag     int    `gorm:"column:user_flag"`     // 用户的权限 -1代表账号不可用，0代表普通用户只有看和评论的权利，1代表管理员，有任何权利
 	UserEmail    string `gorm:"column:user_email"`    // 用户邮箱
 	UserImage    string `gorm:"column:user_image"`    // 用户头像链接
 	UserInfo     string `gorm:"column:user_info"`     // 用户简介
@@ -89,4 +88,7 @@ type Log struct {
 	LogDetail    constant.LogOpDetail `gorm:"column:log_detail"`    // 日志描述
 	LogOperator  string               `gorm:"column:log_operator"`  // 操作人
 	LogTime      string               `gorm:"column:log_time"`      // 操作时间
+	LogObj       int                  `gorm:"column:log_obj"`       // 操作对象
+	LogFlag      int                  `gorm:"column:log_flag"`      // 操作成功与否
+	ErrorMsg     string               `gorm:"column:error_msg"`     // 错误信息
 }
