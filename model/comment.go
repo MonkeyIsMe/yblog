@@ -27,7 +27,7 @@ func QueryCommentPageSize(page int) ([]Comment, error) {
 	var commentList []Comment
 	err := DBClient.Offset((page - 1) * tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
 	if err != nil {
-		log.Fatalf("Query Tag PageSize Err: [%+v]", err)
+		log.Fatalf("Query Comment PageSize Error: [%+v]", err)
 		return nil, err
 	}
 
@@ -40,7 +40,7 @@ func QueryValidCommentPageSize(page int) ([]Comment, error) {
 	err := DBClient.Where("valid = ?", "1").Offset((page - 1) *
 		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
 	if err != nil {
-		log.Fatalf("Query Tag PageSize Err: [%+v]", err)
+		log.Fatalf("Query Valid Comment PageSize Error: [%+v]", err)
 		return nil, err
 	}
 
@@ -53,7 +53,7 @@ func QueryInvalidCommentPageSize(page int) ([]Comment, error) {
 	err := DBClient.Where("valid = ?", "0").Offset((page - 1) *
 		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
 	if err != nil {
-		log.Fatalf("Query Tag PageSize Err: [%+v]", err)
+		log.Fatalf("Query Invalid Comment PageSize Error: [%+v]", err)
 		return nil, err
 	}
 
@@ -64,7 +64,7 @@ func QueryInvalidCommentPageSize(page int) ([]Comment, error) {
 func (comment Comment) SetCommentValid() error {
 	err := DBClient.Model(&comment).Update("valid = ?", "1").Error
 	if err != nil {
-		log.Fatalf("Set Comment Valid Err: [%+v]", err)
+		log.Fatalf("Set Comment Valid Error: [%+v]", err)
 		return err
 	}
 
@@ -76,7 +76,7 @@ func CountComment() (int64, error) {
 	var count int64
 	err := DBClient.Table(constant.TableComment).Count(&count).Error
 	if err != nil {
-		log.Fatalf("Count Comment Err: [%+v]", err)
+		log.Fatalf("Count Comment Error: [%+v]", err)
 		return 0, err
 	}
 
@@ -89,7 +89,7 @@ func QueryBlogCommentPageSize(page int, blogID int) ([]Comment, error) {
 	err := DBClient.Where("valid = ? AND blog_id = ?", "1", blogID).Offset((page - 1) *
 		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
 	if err != nil {
-		log.Fatalf("Query Tag PageSize Err: [%+v]", err)
+		log.Fatalf("Query Comment PageSize Error: [%+v]", err)
 		return nil, err
 	}
 

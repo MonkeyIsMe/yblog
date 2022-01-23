@@ -13,4 +13,5 @@ const (
 	TableLog     = "t_log"
 	TableUser    = "t_user"
 	TableTag     = "t_tag"
+	TableTagBlog = "t_tag_blog"
 )

@@ -11,6 +11,10 @@ func (tag Tag) TableName() string {
 	return constant.TableTag
 }
 
+func (tb TagBlog) TableName() string {
+	return constant.TableTagBlog
+}
+
 // AddTag 插入一个分类标签
 func (tag Tag) AddTag() error {
 	err := DBClient.Create(&tag).Error
@@ -40,4 +44,8 @@ func QueryTagPageSize(page int) ([]Tag, error) {
 		return nil, err
 	}
 	return tagList, nil
+}
+
+func (tb TagBlog) name() {
+
 }
