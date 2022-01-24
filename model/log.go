@@ -7,7 +7,7 @@ import (
 )
 
 // TableName 返回日志表名
-func (log Log) TableName() string {
+func (l Log) TableName() string {
 	return constant.TableLog
 }
 

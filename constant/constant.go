@@ -14,8 +14,9 @@ const (
 	TableUser         = "t_user"
 	TableTag          = "t_tag"
 	TableTagBlog      = "t_tag_blog"
-	TabelClassify     = "t_classify"
-	TabelClassifyBlog = "t_classify_blog"
+	TableClassify     = "t_classify"
+	TableClassifyBlog = "t_classify_blog"
+	TableSystem       = "t_system"
 )
 
 const (

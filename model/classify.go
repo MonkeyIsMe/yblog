@@ -6,11 +6,11 @@ import (
 )
 
 func (classify Classify) TableName() string {
-	return constant.TabelClassify
+	return constant.TableClassify
 }
 
 func (cb ClassifyBlog) TableName() string {
-	return constant.TabelClassifyBlog
+	return constant.TableClassifyBlog
 }
 
 // AddClassify 增加一个分类

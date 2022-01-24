@@ -38,7 +38,7 @@ type User struct {
 	UserAccount  string `gorm:"column:user_account"`  // 账号
 	UserFlag     int    `gorm:"column:user_flag"`     // 用户的权限 -1代表账号不可用，0代表普通用户只有看和评论的权利，1代表管理员，有任何权利
 	UserEmail    string `gorm:"column:user_email"`    // 用户邮箱
-	UserImage    string `gorm:"column:user_image"`    // 用户头像链接
+	HeadImage    string `gorm:"column:head_image"`    // 用户头像链接
 	UserInfo     string `gorm:"column:user_info"`     // 用户简介
 }
 
@@ -91,4 +91,12 @@ type Log struct {
 	LogObj       int                  `gorm:"column:log_obj"`       // 操作对象
 	LogFlag      int                  `gorm:"column:log_flag"`      // 操作成功与否
 	ErrorMsg     string               `gorm:"column:error_msg"`     // 错误信息
+}
+
+// System 系统信息
+type System struct {
+	SystemID   int    `gorm:"column:system_id"`   // 主键，系统编号，一个博客只有一个SystemID
+	SystemName string `gorm:"column:system_name"` // 博客的名称
+	HeadImage  string `gorm:"column:head_image"`  // 博客的头像
+	SystemInfo string `gorm:"column:system_info"` // 博客的介绍
 }

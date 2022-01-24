@@ -7,6 +7,7 @@ import (
 	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
+// TableName 返回一个评论表名
 func (comment Comment) TableName() string {
 	return constant.TableComment
 }
@@ -94,4 +95,15 @@ func QueryBlogCommentPageSize(page int, blogID int) ([]Comment, error) {
 	}
 
 	return commentList, nil
+}
+
+// DeleteComment 删除一条评论
+func (comment Comment) DeleteComment() error {
+	err := DBClient.Delete(&comment).Error
+	if err != nil {
+		log.Fatalf("Add Comment Error: [%+v]", err)
+		return err
+	}
+
+	return nil
 }

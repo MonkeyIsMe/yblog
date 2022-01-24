@@ -80,3 +80,14 @@ func CountBlog() (int64, error) {
 
 	return count, nil
 }
+
+// UpdateBlog 更新一个博客
+func (blog Blog) UpdateBlog() error {
+	err := DBClient.Model(&blog).Updates(blog).Error
+	if err != nil {
+		log.Fatalf("Update Blog Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}

@@ -7,6 +7,7 @@ import (
 	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
+// TableName 返回用户表名
 func (user User) TableName() string {
 	return constant.TableUser
 }
@@ -68,4 +69,35 @@ func QueryUserPageSize(page int) ([]User, error) {
 	return userList, nil
 }
 
-// todo 更新用户信息
+// UpdateUser 更新一个用户
+func (user User) UpdateUser() error {
+	err := DBClient.Model(&user).Updates(user).Error
+	if err != nil {
+		log.Fatalf("Update User Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}
+
+// UpdateUserPassword 更新用户的密码
+func (user User) UpdateUserPassword(newPassword string) error {
+	err := DBClient.Update("user_password", newPassword).Error
+	if err != nil {
+		log.Fatalf("Update User Password Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}
+
+// UpdateUserIcon 更新用户的头像
+func (user User) UpdateUserIcon(iconURL string) error {
+	err := DBClient.Update("head_image", iconURL).Error
+	if err != nil {
+		log.Fatalf("Update User Head Image Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}
