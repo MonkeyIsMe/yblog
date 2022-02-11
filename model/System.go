@@ -31,3 +31,14 @@ func (system System) UpdateSystem() error {
 
 	return nil
 }
+
+// QueryFirstSystem 查询第一个系统设置
+func (system System) QueryFirstSystem() error {
+	err := DBClient.First(&system).Error
+	if err != nil {
+		log.Fatalf("Query System Info Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}

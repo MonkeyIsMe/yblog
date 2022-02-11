@@ -10,7 +10,10 @@ import (
 
 func main() {
 
-	client.InitClient()
+	err := client.InitClient()
+	if err != nil {
+		panic(err)
+	}
 
 	router := gin.Default()
 	router.GET("/user", func(c *gin.Context) {

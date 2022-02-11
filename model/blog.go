@@ -1,9 +1,10 @@
 package model
 
 import (
-	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 	"log"
 	"yblog/constant"
+
+	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
 // TableName 博客表的名字
@@ -58,9 +59,9 @@ func QueryValidBlogPageSize(page int) ([]Blog, error) {
 	return blogList, nil
 }
 
-// SetBlogValid 将博客置为可见
-func (blog Blog) SetBlogValid() error {
-	err := DBClient.Model(&blog).Update("valid = ?", "1").Error
+// SetBlogValid 修改博客状态
+func (blog Blog) SetBlogValid(flag int) error {
+	err := DBClient.Model(&blog).Update("valid = ?", flag).Error
 	if err != nil {
 		log.Fatalf("Set Blog Valid Error: [%+v]", err)
 		return err
@@ -86,6 +87,17 @@ func (blog Blog) UpdateBlog() error {
 	err := DBClient.Model(&blog).Updates(blog).Error
 	if err != nil {
 		log.Fatalf("Update Blog Error: [%+v]", err)
+		return err
+	}
+
+	return nil
+}
+
+// QueryBlogByID 根据主键查询博客
+func (blog Blog) QueryBlogByID(id int) error {
+	err := DBClient.First(&blog, id).Error
+	if err != nil {
+		log.Fatalf("Query Blog By ID Info Error: [%+v]", err)
 		return err
 	}
 

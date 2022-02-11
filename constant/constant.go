@@ -17,6 +17,7 @@ const (
 	TableClassify     = "t_classify"
 	TableClassifyBlog = "t_classify_blog"
 	TableSystem       = "t_system"
+	TableLinks        = "t_links"
 )
 
 const (
@@ -28,4 +29,10 @@ const (
 	TagBlogDetail      = 6
 	ClassifyDetail     = 7
 	ClassifyBlogDetail = 8
+)
+
+const (
+	Delete = -1
+	Normal = 1
+	UnSee  = 2
 )
