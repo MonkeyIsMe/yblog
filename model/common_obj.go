@@ -40,6 +40,7 @@ type User struct {
 	UserEmail    string `gorm:"column:user_email"`    // 用户邮箱
 	HeadImage    string `gorm:"column:head_image"`    // 用户头像链接
 	UserInfo     string `gorm:"column:user_info"`     // 用户简介
+	RegisterDay  string `gorm:"column:register_day"`  // 注册日期
 }
 
 // Tag 标签信息
@@ -99,4 +100,13 @@ type System struct {
 	SystemName string `gorm:"column:system_name"` // 博客的名称
 	HeadImage  string `gorm:"column:head_image"`  // 博客的头像
 	SystemInfo string `gorm:"column:system_info"` // 博客的介绍
+}
+
+// Links 友情链接
+type Links struct {
+	WetChatPay  string `gorm:"column:wechat_pay"`   // 微信收款码
+	WetChatCode string `gorm:"column:wetchat_code"` // 微信名片
+	AliPay      string `gorm:"column:ali_pay"`      // 支付宝收款码
+	GithubURL   string `gorm:"column:github_url"`   // github地址
+	QQNumber    string `gorm:"column:qq_number"`    // QQ号
 }

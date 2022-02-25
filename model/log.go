@@ -1,9 +1,10 @@
 package model
 
 import (
-	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 	"log"
 	"yblog/constant"
+
+	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
 // TableName 返回日志表名

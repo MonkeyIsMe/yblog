@@ -8,15 +8,16 @@ const (
 )
 
 const (
-	TableComment      = "t_comment"       // TableComment 评论表表名
-	TableBlog         = "t_blog"          // TableBlog 博客表表名
-	TableLog          = "t_log"           // TableLog 日志表表名
-	TableUser         = "t_user"          // TableUser 用户表表名
-	TableTag          = "t_tag"           // TableTag 标签表表名
-	TableTagBlog      = "t_tag_blog"      // TableTagBlog 标签和博客关联表表名
-	TableClassify     = "t_classify"      // TableClassify 分类表表名
-	TableClassifyBlog = "t_classify_blog" // TableClassifyBlog 分类和博客关联表表名
-	TableSystem       = "t_system"        // TableSystem 系统信息表表名
+	TableComment      = "t_comment"
+	TableBlog         = "t_blog"
+	TableLog          = "t_log"
+	TableUser         = "t_user"
+	TableTag          = "t_tag"
+	TableTagBlog      = "t_tag_blog"
+	TableClassify     = "t_classify"
+	TableClassifyBlog = "t_classify_blog"
+	TableSystem       = "t_system"
+	TableLinks        = "t_links"
 )
 
 const (
@@ -34,4 +35,10 @@ const (
 	ErrorMsg   = 0 // ErrorMsg 出现错误的返回值
 	SuccessMsg = 1 // SuccessMsg 成功的时候的返回值
 	NullMsg    = 2 // NullMsg 消息为空的时候的返回值
+)
+
+const (
+	Delete = -1
+	Normal = 1
+	UnSee  = 2
 )
