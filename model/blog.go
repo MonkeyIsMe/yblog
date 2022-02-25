@@ -91,3 +91,16 @@ func (blog Blog) UpdateBlog() error {
 
 	return nil
 }
+
+// QueryBlogByID 根据博客主键查询博客的信息
+func QueryBlogByID(blogID int) (Blog, error) {
+	blogInfo := Blog{}
+	err := DBClient.First(&blogInfo, blogID).Error
+
+	if err != nil {
+		log.Fatalf("Query Single Blog Error: [%+v]", err)
+		return blogInfo, err
+	}
+
+	return blogInfo, nil
+}

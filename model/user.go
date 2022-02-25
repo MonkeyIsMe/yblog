@@ -101,3 +101,16 @@ func (user User) UpdateUserIcon(iconURL string) error {
 
 	return nil
 }
+
+// QueryUserByID 根据用户主键查询用户的信息
+func QueryUserByID(userID int) (User, error) {
+	userInfo := User{}
+	err := DBClient.First(&userInfo, userID).Error
+
+	if err != nil {
+		log.Fatalf("Query Single User Error: [%+v]", err)
+		return userInfo, err
+	}
+
+	return userInfo, nil
+}

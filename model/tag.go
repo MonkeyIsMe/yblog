@@ -65,3 +65,16 @@ func (tb TagBlog) DeleteTagBlog() error {
 	}
 	return nil
 }
+
+// QueryTagByID 根据用户主键查询用户的信息
+func QueryTagByID(tagID int) (Tag, error) {
+	tagInfo := Tag{}
+	err := DBClient.First(&tagInfo, tagID).Error
+
+	if err != nil {
+		log.Fatalf("Query Single Tag Error: [%+v]", err)
+		return tagInfo, err
+	}
+
+	return tagInfo, nil
+}

@@ -56,3 +56,16 @@ func (cb ClassifyBlog) DeleteClassifyBlog() error {
 
 	return nil
 }
+
+// QueryClassifyByID 根据分类主键查询分类的信息
+func QueryClassifyByID(classifyID int) (Classify, error) {
+	classifyInfo := Classify{}
+	err := DBClient.First(&classifyInfo, classifyID).Error
+
+	if err != nil {
+		log.Fatalf("Query Single Classfiy Error: [%+v]", err)
+		return classifyInfo, err
+	}
+
+	return classifyInfo, nil
+}

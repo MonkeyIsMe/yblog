@@ -107,3 +107,16 @@ func (comment Comment) DeleteComment() error {
 
 	return nil
 }
+
+// QueryCommentByID 根据用户主键查询用户的信息
+func QueryCommentByID(commentID int) (Comment, error) {
+	commentInfo := Comment{}
+	err := DBClient.First(&commentInfo, commentID).Error
+
+	if err != nil {
+		log.Fatalf("Query Single Comment Error: [%+v]", err)
+		return commentInfo, err
+	}
+
+	return commentInfo, nil
+}

@@ -31,3 +31,16 @@ func (system System) UpdateSystem() error {
 
 	return nil
 }
+
+// QuerySystemByID 根据系统信息主键查询系统的信息
+func QuerySystemByID(systemID int) (System, error) {
+	systemInfo := System{}
+	err := DBClient.First(&systemInfo, systemID).Error
+
+	if err != nil {
+		log.Fatalf("Update System Error: [%+v]", err)
+		return systemInfo, err
+	}
+
+	return systemInfo, nil
+}
