@@ -8,16 +8,17 @@ const (
 )
 
 const (
-	TableComment      = "t_comment"
-	TableBlog         = "t_blog"
-	TableLog          = "t_log"
-	TableUser         = "t_user"
-	TableTag          = "t_tag"
-	TableTagBlog      = "t_tag_blog"
-	TableClassify     = "t_classify"
-	TableClassifyBlog = "t_classify_blog"
-	TableSystem       = "t_system"
-	TableLinks        = "t_links"
+	TableComment      = "t_comment"       // 评论表
+	TableBlog         = "t_blog"          // 博客表
+	TableLog          = "t_log"           // 日志表
+	TableUser         = "t_user"          // 用户表
+	TableTag          = "t_tag"           // 标签表
+	TableTagBlog      = "t_tag_blog"      // 标签和博客关联表
+	TableClassify     = "t_classify"      // 分类表
+	TableClassifyBlog = "t_classify_blog" // 分类和博客关联表
+	TableSystem       = "t_system"        // 系统表
+	TableLinks        = "t_links"         // 友情链接表
+	TableReply        = "t_reply"         // 回复表
 )
 
 const (

@@ -35,23 +35,10 @@ func QueryCommentPageSize(page int) ([]Comment, error) {
 	return commentList, nil
 }
 
-// QueryValidCommentPageSize 分页合法查询评论
-func QueryValidCommentPageSize(page int) ([]Comment, error) {
+// QueryCommentByStatus 分页不合法查询评论
+func QueryCommentByStatus(page, valid int) ([]Comment, error) {
 	var commentList []Comment
-	err := DBClient.Where("valid = ?", "1").Offset((page - 1) *
-		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
-	if err != nil {
-		log.Fatalf("Query Valid Comment PageSize Error: [%+v]", err)
-		return nil, err
-	}
-
-	return commentList, nil
-}
-
-// QueryInvalidCommentPageSize 分页不合法查询评论
-func QueryInvalidCommentPageSize(page int) ([]Comment, error) {
-	var commentList []Comment
-	err := DBClient.Where("valid = ?", "0").Offset((page - 1) *
+	err := DBClient.Where("valid = ?", valid).Offset((page - 1) *
 		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
 	if err != nil {
 		log.Fatalf("Query Invalid Comment PageSize Error: [%+v]", err)
@@ -61,9 +48,9 @@ func QueryInvalidCommentPageSize(page int) ([]Comment, error) {
 	return commentList, nil
 }
 
-// SetCommentValid 将评论置为合法
-func (comment Comment) SetCommentValid() error {
-	err := DBClient.Model(&comment).Update("valid = ?", "1").Error
+// SetCommentStatus 这是评论的状态
+func (comment Comment) SetCommentStatus(valid int) error {
+	err := DBClient.Model(&comment).Update("valid = ?", valid).Error
 	if err != nil {
 		log.Fatalf("Set Comment Valid Error: [%+v]", err)
 		return err
@@ -108,7 +95,7 @@ func (comment Comment) DeleteComment() error {
 	return nil
 }
 
-// QueryCommentByID 根据用户主键查询用户的信息
+// QueryCommentByID 根据评论主键查询评论的信息
 func QueryCommentByID(commentID int) (Comment, error) {
 	commentInfo := Comment{}
 	err := DBClient.First(&commentInfo, commentID).Error

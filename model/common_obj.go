@@ -66,6 +66,7 @@ type Blog struct {
 	BlogAbstract string `gorm:"column:blog_abstract"` // 博客摘要
 	BlogAuthor   string `gorm:"column:blog_author"`   // 博客作者
 	IsValid      string `gorm:"column:is_valid"`      // 是否可见
+	ModifyTime   string `gorm:"column:modify_time"`   // 最后修改的时间
 }
 
 // Classify 分类信息
@@ -100,13 +101,27 @@ type System struct {
 	SystemName string `gorm:"column:system_name"` // 博客的名称
 	HeadImage  string `gorm:"column:head_image"`  // 博客的头像
 	SystemInfo string `gorm:"column:system_info"` // 博客的介绍
+	BlogConfig string `gorm:"column:blog_config"` // 博客的配置
 }
 
 // Links 友情链接
 type Links struct {
+	LinksID     int
 	WetChatPay  string `gorm:"column:wechat_pay"`   // 微信收款码
 	WetChatCode string `gorm:"column:wetchat_code"` // 微信名片
 	AliPay      string `gorm:"column:ali_pay"`      // 支付宝收款码
 	GithubURL   string `gorm:"column:github_url"`   // github地址
 	QQNumber    string `gorm:"column:qq_number"`    // QQ号
+}
+
+// Reply 评论回复
+type Reply struct {
+	ReplyID      int    `gorm:"column:reply_id"`      // 回复主键
+	ReplyInfo    string `gorm:"column:reply_info"`    // 回复的信息
+	ReplyTime    string `gorm:"column:reply_time"`    // 回复的时间
+	ReplyEmail   string `gorm:"column:reply_email"`   // 回复人的邮箱
+	ReplyAccount string `gorm:"column:reply_account"` // 回复人的账号，当游客评论时，此项为空
+	ReplyName    string `gorm:"column:reply_name"`    // 回复人的名字，当游客评论时，此项为空
+	IsValid      int    `gorm:"column:is_valid"`      // 评论是否合法
+	CommentID    int    `gorm:"column:comment_id"`    // 评论主键
 }
