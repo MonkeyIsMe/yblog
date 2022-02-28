@@ -36,8 +36,7 @@ func QueryCommentPageSize(page, size int) ([]Comment, error) {
 // QueryCommentByStatus 分页不合法查询评论
 func QueryCommentByStatus(page, valid, size int) ([]Comment, error) {
 	var commentList []Comment
-	err := DBClient.Where("valid = ?", valid).Offset((page - 1) *
-		size).Limit(size).Find(&commentList).Error
+	err := DBClient.Where("valid = ?", valid).Offset((page - 1) * size).Limit(size).Find(&commentList).Error
 	if err != nil {
 		log.Fatalf("Query Invalid Comment PageSize Error: [%+v]", err)
 		return nil, err

@@ -44,11 +44,10 @@ func QueryBlogPageSize(page, size int) ([]Blog, error) {
 	return blogList, nil
 }
 
-// QueryBlogByStatus 分页查询可见博客
+// QueryBlogByStatus 根据状态分页查询博客
 func QueryBlogByStatus(page, valid, size int) ([]Blog, error) {
 	var blogList []Blog
-	err := DBClient.Where("valid = ?", valid).Offset((page - 1) *
-		size).Limit(size).Find(&blogList).Error
+	err := DBClient.Where("valid = ?", valid).Offset((page - 1) * size).Limit(size).Find(&blogList).Error
 	if err != nil {
 		log.Fatalf("Query Blog By Status Error: [%+v]", err)
 		return nil, err

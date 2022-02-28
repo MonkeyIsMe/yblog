@@ -78,3 +78,15 @@ func QueryTagByID(tagID int) (Tag, error) {
 
 	return tagInfo, nil
 }
+
+// CountTag 查询所有标签总数
+func CountTag() (int64, error) {
+	var count int64
+	err := DBClient.Table(constant.TableTag).Count(&count).Error
+	if err != nil {
+		log.Fatalf("Count Tag Error: [%+v]", err)
+		return 0, err
+	}
+
+	return count, nil
+}

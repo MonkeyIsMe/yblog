@@ -20,3 +20,16 @@ func (statistics Statistics) AddStatistics() error {
 
 	return nil
 }
+
+// QueryStatisticsByTime 根据日期查询统计数据
+func QueryStatisticsByTime(time string) (Statistics, error) {
+	statisticsInfo := Statistics{}
+	err := DBClient.First(&statisticsInfo, "statistics_day = ?", time).Error
+
+	if err != nil {
+		log.Fatalf("Query Single Statistics Error: [%+v]", err)
+		return statisticsInfo, err
+	}
+
+	return statisticsInfo, nil
+}

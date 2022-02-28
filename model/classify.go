@@ -69,3 +69,15 @@ func QueryClassifyByID(classifyID int) (Classify, error) {
 
 	return classifyInfo, nil
 }
+
+// CountClassfiy 查询所有分类总数
+func CountClassfiy() (int64, error) {
+	var count int64
+	err := DBClient.Table(constant.TableClassify).Count(&count).Error
+	if err != nil {
+		log.Fatalf("Count Classfiy Error: [%+v]", err)
+		return 0, err
+	}
+
+	return count, nil
+}
