@@ -125,3 +125,12 @@ type Reply struct {
 	IsValid      int    `gorm:"column:is_valid"`      // 评论是否合法
 	CommentID    int    `gorm:"column:comment_id"`    // 评论主键
 }
+
+// Statistics 微博的统计
+type Statistics struct {
+	StatisticsID       int    `gorm:"column:statistics_id"`   // 统计主键
+	TotalCount         int64  `gorm:"column:total_count"`     // 总预览数主键
+	YesterdayViewCount int    `gorm:"column:yesterday_count"` // 昨日预览数
+	DayCount           int    `gorm:"column:day_count"`       // 博客建立的天数
+	StatisticsDay      string `gorm:"column:statistics_day"`  // 日期
+}

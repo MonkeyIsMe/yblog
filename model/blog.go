@@ -3,8 +3,6 @@ package model
 import (
 	"log"
 	"yblog/constant"
-
-	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
 // TableName 博客表的名字
@@ -35,9 +33,9 @@ func (blog Blog) DeleteBlog() error {
 }
 
 // QueryBlogPageSize 分页查询博客
-func QueryBlogPageSize(page int) ([]Blog, error) {
+func QueryBlogPageSize(page, size int) ([]Blog, error) {
 	var blogList []Blog
-	err := DBClient.Offset((page - 1) * tconstant.PageSize).Limit(tconstant.PageSize).Find(&blogList).Error
+	err := DBClient.Offset((page - 1) * size).Limit(size).Find(&blogList).Error
 	if err != nil {
 		log.Fatalf("Query Blog PageSize Error: [%+v]", err)
 		return nil, err
@@ -46,13 +44,13 @@ func QueryBlogPageSize(page int) ([]Blog, error) {
 	return blogList, nil
 }
 
-// QueryValidBlogPageSize 分页查询可见博客
-func QueryValidBlogPageSize(page int) ([]Blog, error) {
+// QueryBlogByStatus 分页查询可见博客
+func QueryBlogByStatus(page, valid, size int) ([]Blog, error) {
 	var blogList []Blog
-	err := DBClient.Where("valid = ?", "1").Offset((page - 1) *
-		tconstant.PageSize).Limit(tconstant.PageSize).Find(&blogList).Error
+	err := DBClient.Where("valid = ?", valid).Offset((page - 1) *
+		size).Limit(size).Find(&blogList).Error
 	if err != nil {
-		log.Fatalf("Query Valid Blog PageSize Error: [%+v]", err)
+		log.Fatalf("Query Blog By Status Error: [%+v]", err)
 		return nil, err
 	}
 

@@ -3,8 +3,6 @@ package model
 import (
 	"log"
 	"yblog/constant"
-
-	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
 // TableName 返回一个评论表名
@@ -24,9 +22,9 @@ func (comment Comment) AddComment() error {
 }
 
 // QueryCommentPageSize 分页查询评论
-func QueryCommentPageSize(page int) ([]Comment, error) {
+func QueryCommentPageSize(page, size int) ([]Comment, error) {
 	var commentList []Comment
-	err := DBClient.Offset((page - 1) * tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
+	err := DBClient.Offset((page - 1) * size).Limit(size).Find(&commentList).Error
 	if err != nil {
 		log.Fatalf("Query Comment PageSize Error: [%+v]", err)
 		return nil, err
@@ -36,10 +34,10 @@ func QueryCommentPageSize(page int) ([]Comment, error) {
 }
 
 // QueryCommentByStatus 分页不合法查询评论
-func QueryCommentByStatus(page, valid int) ([]Comment, error) {
+func QueryCommentByStatus(page, valid, size int) ([]Comment, error) {
 	var commentList []Comment
 	err := DBClient.Where("valid = ?", valid).Offset((page - 1) *
-		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
+		size).Limit(size).Find(&commentList).Error
 	if err != nil {
 		log.Fatalf("Query Invalid Comment PageSize Error: [%+v]", err)
 		return nil, err
@@ -72,10 +70,10 @@ func CountComment() (int64, error) {
 }
 
 // QueryBlogCommentPageSize 查询某个博客的合法评论
-func QueryBlogCommentPageSize(page int, blogID int) ([]Comment, error) {
+func QueryBlogCommentPageSize(page, blogID, size int) ([]Comment, error) {
 	var commentList []Comment
 	err := DBClient.Where("valid = ? AND blog_id = ?", "1", blogID).Offset((page - 1) *
-		tconstant.PageSize).Limit(tconstant.PageSize).Find(&commentList).Error
+		size).Limit(size).Find(&commentList).Error
 	if err != nil {
 		log.Fatalf("Query Comment PageSize Error: [%+v]", err)
 		return nil, err

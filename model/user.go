@@ -3,8 +3,6 @@ package model
 import (
 	"log"
 	"yblog/constant"
-
-	tconstant "github.com/MonkeyIsMe/MyTool/constant"
 )
 
 // TableName 返回用户表名
@@ -58,9 +56,9 @@ func CountUser() (int64, error) {
 }
 
 // QueryUserPageSize 分页查询用户
-func QueryUserPageSize(page int) ([]User, error) {
+func QueryUserPageSize(page, size int) ([]User, error) {
 	var userList []User
-	err := DBClient.Offset((page - 1) * tconstant.PageSize).Limit(tconstant.PageSize).Find(&userList).Error
+	err := DBClient.Offset((page - 1) * size).Limit(size).Find(&userList).Error
 	if err != nil {
 		log.Fatalf("Query User PageSize Error: [%+v]", err)
 		return nil, err

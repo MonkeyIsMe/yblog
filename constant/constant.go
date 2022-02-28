@@ -19,6 +19,7 @@ const (
 	TableSystem       = "t_system"        // 系统表
 	TableLinks        = "t_links"         // 友情链接表
 	TableReply        = "t_reply"         // 回复表
+	TableStatistics   = "t_statistics"    // 统计表
 )
 
 const (
